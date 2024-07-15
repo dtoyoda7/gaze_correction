@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://www.tensorflow.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-1.x-orange.svg)](https://www.tensorflow.org/)
 
 Gaze Correction is a powerful deep learning-based solution for correcting the gaze direction in images and videos. This repository provides a comprehensive implementation of a gaze correction model, along with tools for training, evaluating, and deploying the model.
 
