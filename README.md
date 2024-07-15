@@ -29,6 +29,14 @@ Gaze Correction is a powerful deep learning-based solution for correcting the ga
 - [pip](https://pip.pypa.io/en/stable/) package manager
 - [virtualenv](https://virtualenv.pypa.io/en/latest/) (optional, but recommended)
 
+### Required Packages
+
+- Tensorflow 1.15.0
+- Numpy 1.16.0
+- OpenCV 3.4.2.16
+- pypiwin32
+- protobuf
+
 ### Virtual Environment Setup (Recommended)
 
 It's recommended to use a virtual environment to manage the project's dependencies. Follow these steps to set up a virtual environment:
