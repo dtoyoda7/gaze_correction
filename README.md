@@ -35,7 +35,7 @@ Gaze Correction is a powerful deep learning-based solution for correcting the ga
 - Numpy 1.16.0
 - OpenCV 3.4.2.16
 - pypiwin32
-- protobuf
+- protobuf 3.20.0
 
 ### Virtual Environment Setup (Recommended)
 
