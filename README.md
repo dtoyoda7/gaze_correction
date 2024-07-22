@@ -13,13 +13,6 @@ Gaze Correction is a powerful deep learning-based solution for correcting the ga
   - [Prerequisites](#prerequisites)
   - [Virtual Environment Setup](#virtual-environment-setup)
   - [Installing Dependencies](#installing-dependencies)
-- [Usage](#usage)
-  - [Training](#training)
-  - [Evaluation](#evaluation)
-  - [Inference](#inference)
-- [Pretrained Models](#pretrained-models)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
