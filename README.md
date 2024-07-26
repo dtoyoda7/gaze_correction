@@ -30,6 +30,9 @@ Gaze Correction is a powerful deep learning-based solution for correcting the ga
 - pypiwin32
 - protobuf 3.20.0
 
+- tensorflow 2.15.0
+- tensorflow-probability 0.23.0
+
 ### Virtual Environment Setup (Recommended)
 
 It's recommended to use a virtual environment to manage the project's dependencies. Follow these steps to set up a virtual environment:
