@@ -152,17 +152,17 @@ class gaze_redirection_system:
         with tf.Graph().as_default() as g:
             # define placeholder for inputs to network
             with tf.name_scope('inputs'):
-                self.LE_input_img = tf.placeholder(tf.float32, [None, conf.height, conf.width, conf.channel], name="input_img")
-                self.LE_input_fp = tf.placeholder(tf.float32, [None, conf.height, conf.width,conf.ef_dim], name="input_fp")
-                self.LE_input_ang = tf.placeholder(tf.float32, [None, conf.agl_dim], name="input_ang")
-                self.LE_phase_train = tf.placeholder(tf.bool, name='phase_train') # a bool for batch_normalization
+                self.LE_input_img = tf.compat.v1.placeholder(tf.float32, [None, conf.height, conf.width, conf.channel], name="input_img")
+                self.LE_input_fp = tf.compat.v1.placeholder(tf.float32, [None, conf.height, conf.width,conf.ef_dim], name="input_fp")
+                self.LE_input_ang = tf.compat.v1.placeholder(tf.float32, [None, conf.agl_dim], name="input_ang")
+                self.LE_phase_train = tf.compat.v1.placeholder(tf.bool, name='phase_train') # a bool for batch_normalization
 
             self.LE_img_pred, _, _ = model.inference(self.LE_input_img, self.LE_input_fp, self.LE_input_ang, self.LE_phase_train, conf)
 
             # split modle here
-            self.L_sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True,log_device_placement=False), graph = g)
+            self.L_sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True,log_device_placement=False), graph = g)
             # load model
-            saver = tf.train.Saver(tf.global_variables())
+            saver = tf.compat.v1.train.Saver(tf.compat.v1.global_variables())
             ckpt = tf.train.get_checkpoint_state(model_dir+'L/')
             if ckpt and ckpt.model_checkpoint_path:
                 # Restores from checkpoint
@@ -174,17 +174,17 @@ class gaze_redirection_system:
         with tf.Graph().as_default() as g2:
             # define placeholder for inputs to network
             with tf.name_scope('inputs'):
-                self.RE_input_img = tf.placeholder(tf.float32, [None, conf.height, conf.width, conf.channel], name="input_img")
-                self.RE_input_fp = tf.placeholder(tf.float32, [None, conf.height, conf.width,conf.ef_dim], name="input_fp")
-                self.RE_input_ang = tf.placeholder(tf.float32, [None, conf.agl_dim], name="input_ang")
-                self.RE_phase_train = tf.placeholder(tf.bool, name='phase_train') # a bool for batch_normalization
+                self.RE_input_img = tf.compat.v1.placeholder(tf.float32, [None, conf.height, conf.width, conf.channel], name="input_img")
+                self.RE_input_fp = tf.compat.v1.placeholder(tf.float32, [None, conf.height, conf.width,conf.ef_dim], name="input_fp")
+                self.RE_input_ang = tf.compat.v1.placeholder(tf.float32, [None, conf.agl_dim], name="input_ang")
+                self.RE_phase_train = tf.compat.v1.placeholder(tf.bool, name='phase_train') # a bool for batch_normalization
 
             self.RE_img_pred, _, _ = model.inference(self.RE_input_img, self.RE_input_fp, self.RE_input_ang, self.RE_phase_train, conf)
 
             # split modle here
-            self.R_sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True,log_device_placement=False), graph = g2)
+            self.R_sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True,log_device_placement=False), graph = g2)
             # load model
-            saver = tf.train.Saver(tf.global_variables())
+            saver = tf.compat.v1.train.Saver(tf.compat.v1.global_variables())
             ckpt = tf.train.get_checkpoint_state(model_dir+'R/')
             if ckpt and ckpt.model_checkpoint_path:
                 # Restores from checkpoint
