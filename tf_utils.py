@@ -1,15 +1,13 @@
 import tensorflow.compat.v1 as tf
 
 def batch_norm(x, train_phase, name='bn_layer'):
-    #with tf.variable_scope(name) as scope:
-    batch_norm = tf.layers.batch_normalization(
-            inputs=x,
+    #with tf.name_scope(name) as scope:
+    batch_norm = tf.keras.layers.BatchNormalization(
             momentum=0.9, epsilon=1e-5,
             center=True, scale=True,
-            training = train_phase,
             name=name
     )
-    return batch_norm
+    return batch_norm(x, train_phase)
     
 def cnn_blk(inputs, filters, kernel_size, phase_train, name = 'cnn_blk'):
     with tf.variable_scope(name) as scope:
