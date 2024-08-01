@@ -1,4 +1,4 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 import tf_utils
 import transformation
@@ -34,14 +34,14 @@ def trans_module(inputs, structures, phase_train, name="trans_module"):
         cnn_blk_1 = tf_utils.cnn_blk(cnn_blk_0, structures['depth'][1], structures['filter_size'][1], phase_train, name = 'cnn_blk_1')
         cnn_blk_2 = tf_utils.cnn_blk(tf.concat([cnn_blk_0,cnn_blk_1], axis=3), structures['depth'][2], structures['filter_size'][2], phase_train, name = 'cnn_blk_2')
         cnn_blk_3 = tf_utils.cnn_blk(tf.concat([cnn_blk_0,cnn_blk_1,cnn_blk_2], axis=3), structures['depth'][3], structures['filter_size'][3], phase_train, name = 'cnn_blk_3')
-        cnn_4 = tf.layers.conv2d(inputs=cnn_blk_3, filters=structures['depth'][4], kernel_size=structures['filter_size'][4], padding="same", activation=None, use_bias=False, name="cnn_4")
+        cnn_4 = tf.keras.layers.Conv2D(inputs=cnn_blk_3, filters=structures['depth'][4], kernel_size=structures['filter_size'][4], padding="same", activation=None, use_bias=False, name="cnn_4")
         return cnn_4
     
 def lcm_module(inputs, structures, phase_train, name="lcm_module"):
     with tf.variable_scope(name) as scope:
         cnn_blk_0 = tf_utils.cnn_blk(inputs, structures['depth'][0], structures['filter_size'][0], phase_train, name = 'cnn_blk_0')        
         cnn_blk_1 = tf_utils.cnn_blk(cnn_blk_0, structures['depth'][1], structures['filter_size'][1], phase_train, name = 'cnn_blk_1')
-        cnn_2 = tf.layers.conv2d(inputs=cnn_blk_1, filters=structures['depth'][2], kernel_size=structures['filter_size'][2], padding="same", activation=None, use_bias=False, name='cnn_2')
+        cnn_2 = tf.keras.layers.Conv2D(inputs=cnn_blk_1, filters=structures['depth'][2], kernel_size=structures['filter_size'][2], padding="same", activation=None, use_bias=False, name='cnn_2')
         lcm_map = tf.nn.softmax(cnn_2)
         return lcm_map
 
@@ -60,11 +60,11 @@ def inference(input_img, input_fp, input_agl, phase_train, conf):
         
         with tf.variable_scope('warping_module'):
             '''coarse module'''
-            resized_igt_inputs = tf.layers.average_pooling2d(inputs=igt_inputs, pool_size=[2,2], strides=2, padding='same')
+            resized_igt_inputs = tf.keras.layers.AveragePooling2D(pool_size=[2,2], strides=2, padding='same')(igt_inputs)
             cours_raw = trans_module(resized_igt_inputs, corse_layer, phase_train, name='coarse_level')
             cours_act = tf.nn.tanh(cours_raw)
             coarse_resize = tf.image.resize_images(cours_act, (conf.height, conf.width), method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-            coarse_out = tf.layers.average_pooling2d(inputs=coarse_resize, pool_size=[2, 2], strides=1, padding='same')
+            coarse_out = tf.keras.layers.AveragePooling2D(pool_size=[2, 2], strides=1, padding='same')(coarse_resize)
             '''fine module'''
             fine_input = tf.concat([igt_inputs, coarse_out],axis=3, name='fine_input')
             fine_out = trans_module(fine_input, fine_layer, phase_train, name='fine_level')

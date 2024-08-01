@@ -13,9 +13,22 @@ import time
 import socket
 import struct
 import numpy as np
-import tensorflow as tf
-from win32api import GetSystemMetrics
-import win32gui
+import tensorflow.compat.v1 as tf
+import platform
+
+if platform.system() == 'Windows':
+    from win32api import GetSystemMetrics
+    import win32gui
+
+    # Use GetSystemMetrics to get screen dimensions
+    Rs = (GetSystemMetrics(0), GetSystemMetrics(1))
+else:
+    from screeninfo import get_monitors
+
+    # Use screeninfo to get screen dimensions
+    for monitor in get_monitors():
+        Rs = (monitor.width, monitor.height)
+        break
 
 from threading import Thread, Lock
 import multiprocessing as mp
@@ -42,7 +55,7 @@ depth = -50
 # for monitoring
 
 # environment parameter
-Rs = (GetSystemMetrics(0),GetSystemMetrics(1))
+# Rs = (GetSystemMetrics(0),GetSystemMetrics(1))
 
 
 # In[ ]:
