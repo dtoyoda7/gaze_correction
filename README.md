@@ -1,8 +1,8 @@
 # Gaze Correction
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-1.x-orange.svg)](https://www.tensorflow.org/)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://www.tensorflow.org/)
 
 Gaze Correction is a powerful deep learning-based solution for correcting the gaze direction in images and videos. This repository provides a comprehensive implementation of a gaze correction model, along with tools for training, evaluating, and deploying the model.
 
@@ -18,20 +18,16 @@ Gaze Correction is a powerful deep learning-based solution for correcting the ga
 
 ### Prerequisites
 
-- Python 3.7 or higher
+- Python 3.9 or higher
 - [pip](https://pip.pypa.io/en/stable/) package manager
 - [virtualenv](https://virtualenv.pypa.io/en/latest/) (optional, but recommended)
 
 ### Required Packages
 
-- Tensorflow 1.15.0
-- Numpy 1.16.0
-- OpenCV 3.4.2.16
-- pypiwin32
-- protobuf 3.20.0
-
 - tensorflow 2.15.0
 - tensorflow-probability 0.23.0
+- dlib
+- opencv-python
 
 ### Virtual Environment Setup (Recommended)
 
